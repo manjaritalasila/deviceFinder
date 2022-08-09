@@ -76,7 +76,6 @@ def findLoc():
 
     # determines which room device is in
     vals = []
-    user_location = [lat,long]
     for i in range (0, len(roomNames)):
         vals.append((abs(user_location[0] - roomLat[i])) +  (abs(user_location[1] - roomLong[i])))
        
