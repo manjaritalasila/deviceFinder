@@ -1,5 +1,6 @@
 from pyicloud import PyiCloudService
 from getMaps import getMaps
+import time
 
 # returns device of interest
 def getDevice (username,password):
@@ -72,20 +73,12 @@ def findLoc():
     long = loc['longitude']
     user_location = [lat,long]
 
-    myVars = globals()
 
     # determines which room device is in
-    for i in range(0, len(roomNames)):
-        myVars[(roomNames[i][0])] = 0
-        myVars[roomNames[i]] = [roomLat[i], roomLong[i]]
-
-    vals = [0] * len(roomNames)
-    for i in range(1,60):
-        user_location = [lat,long]
-        for i in range (0, len(roomNames)):
-           myVars[roomNames[i][1]] = abs(user_location[0] - myVars[roomNames[i]][0]) +  abs(user_location[1] - myVars[roomNames[i]][1])
-           myVars[(roomNames[i][0])] += myVars[roomNames[i][1]]
-           vals[i] = myVars[(roomNames[i][0])]
+    vals = []
+    user_location = [lat,long]
+    for i in range (0, len(roomNames)):
+        vals.append((abs(user_location[0] - roomLat[i])) +  (abs(user_location[1] - roomLong[i])))
        
     X = vals.index(min(vals))
     print(bat)
@@ -93,4 +86,5 @@ def findLoc():
         print ("It is not on the premises")
     else:
         print("It is located in: " + roomNames[X])
+
 
