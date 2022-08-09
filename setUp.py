@@ -16,7 +16,6 @@ roomNames = []
 roomLat = []
 roomLong = []
 
-
 # maps out room locations
 # user brings chosen device to each room and follows given direction
 for i in range(1,(numRooms + 1)):
@@ -24,51 +23,44 @@ for i in range(1,(numRooms + 1)):
     avgLong = 0
     if i != 1:
         print ("Go to the next room.")
-    rdy = input("Type Y when you are you ready to begin:")
+    rdy = input("Type Y when you are in the room:")
     if rdy == "Y":
-        roomName = input("Stand in room corner one. Enter room name:")
+        print ("Please wait in the room for five minutes")
+        time.sleep(300)
+        roomName = input("Enter room name:")
 
-        #corner one
-        for i in range (0,3):
+        for i in range (0,100):
             loc = dev.location()
             avgLat += loc['latitude']
             avgLong += loc['longitude']
-        print("Move to corner two")
-        time.sleep(10)
+        print("Move around the room")
+        time.sleep(5)
     
-        #corner two
-        for i in range (0,3):
-            loc = dev.location()
-            avgLat += loc['latitude']
-            avgLong += loc['longitude']
-        print("Move to corner three")
-        time.sleep(10)
-
-        #corner three
-        for i in range (0,3):
-            loc = dev.location()
-            avgLat += loc['latitude']
-            avgLong += loc['longitude']
-        print("Move to corner four")
-        time.sleep(10)
-
-        #corner four
-        for i in range (0,3):
-            loc = dev.location()
-            avgLat += loc['latitude']
-            avgLong += loc['longitude']
-        print("Move to room center")
-        time.sleep(10)
-    
-        #center
-        for i in range (0,3):
+        for i in range (0,100):
             loc = dev.location()
             avgLat += loc['latitude']
             avgLong += loc['longitude']
         time.sleep(5)
 
-        avgLat = (avgLat/15)
-        avgLong = (avgLong/15)
+        for i in range (0,100):
+            loc = dev.location()
+            avgLat += loc['latitude']
+            avgLong += loc['longitude']
+        time.sleep(5)
+
+        for i in range (0,100):
+            loc = dev.location()
+            avgLat += loc['latitude']
+            avgLong += loc['longitude']
+        time.sleep(5)
+    
+        for i in range (0,100):
+            loc = dev.location()
+            avgLat += loc['latitude']
+            avgLong += loc['longitude']
+
+        avgLat = (avgLat/500)
+        avgLong = (avgLong/500)
 
         roomLat.append(avgLat)
         roomLong.append(avgLong)
@@ -88,3 +80,4 @@ with open('roomLong.txt', 'w') as f:
     for item in roomLong:
         f.write("%s\n" % item)
 print("Set up is complete!")
+
