@@ -13,7 +13,6 @@ def getMaps():
             x = line[:-1]
             roomNames.append(x)
 
-
     with open('roomLat.txt', 'r') as f:
         for line in f:
             x = float(line[:-1])
