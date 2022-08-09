@@ -3,7 +3,6 @@ import time
 
 # asks for user to input iCloud username and password and stores
 # data in a text file
-
 username = input("What is your iCloud username?: ")
 password = input("What is your iCloud password?: ")
 
